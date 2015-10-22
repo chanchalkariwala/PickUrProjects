@@ -39,7 +39,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="home.html"><img class="img-rounded img-responsive" src="<?php echo get_template_directory_uri() .'/images/new-logo.png'?>"/></a>
+                        <a class="navbar-brand" href="<?php get_home_url(); ?>"><img class="img-rounded img-responsive" src="<?php echo get_template_directory_uri() .'/images/new-logo.png'?>"/></a>
                     </div><!--end navbar-header-->
                     <div class="collapse navbar-collapse menu-primary" id="bs-example-navbar-collapse-1">
                         <?php
