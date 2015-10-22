@@ -46,4 +46,11 @@ body
 	background-color:#e7e7e7 !important;
 }
 
+@media screen and (min-width: 960px) {
+    ul.nav li.dropdown:hover > ul.dropdown-menu {
+        display: block;
+    }
+}
+
 /* Navbar modifications : END */
+
