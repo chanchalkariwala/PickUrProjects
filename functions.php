@@ -114,8 +114,19 @@ add_action( 'widgets_init', 'pickurprojects_widgets_init' );
  * Enqueue scripts and styles.
  */
 function pickurprojects_scripts() {
+   
+    wp_enqueue_style( 'bootstrap', get_template_directory_uri() .'/css/bootstrap.min.css',array(),'3.3.4' );
+    wp_enqueue_style( 'font-awesome', get_template_directory_uri() .'/css/font-awesome-4.4.0/css/font-awesome.min.css',array(),'4.4.0' );
+     
 	wp_enqueue_style( 'pickurprojects-style', get_stylesheet_uri() );
-
+    
+    if( !is_admin()){
+        wp_deregister_script( 'jquery' );
+        wp_register_script('jquery', get_template_directory_uri().'/js/jquery.min.js', false,'1.10.2',true);
+        wp_enqueue_script('jquery');
+    }
+    wp_enqueue_script( 'bootstrap-min-js', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '3.3.4', true );
+    
 	wp_enqueue_script( 'pickurprojects-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 
 	wp_enqueue_script( 'pickurprojects-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
@@ -150,3 +161,46 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+/**
+ * navigation bootstrap
+ */
+require get_template_directory() . '/inc/wp_bootstrap_navwalker.php';
+
+/**
+ * Custom Items in Primary Menu
+ */
+function my_custom_menu_item($items, $args)
+{
+    if(is_user_logged_in() && $args->theme_location == 'primary')
+    {
+        $user=wp_get_current_user();
+        $name=$user->display_name; // or user_login , user_firstname, user_lastname
+
+        $items .= '<li class="dropdown">';
+        $items .= '<a href="wordpress1/profile" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hi '.$name.'!&nbsp;<span class="caret"></span></a>';
+
+        	$items .= '<ul class="dropdown-menu">';
+        	$items .= '<li><a href="wordpress1/profile">View Profile</a></li>';
+            $items .= '<li><a href="wordpress1/uploads">My Uploads</a></li>';	    
+        	$items .= '<li><a href="wordpress1/logout">Logout</a></li>';    
+        	$items .= '</ul>';
+
+        $items .= '</li>';
+
+    }
+
+    elseif (!is_user_logged_in() && $args->theme_location == 'primary') {
+
+        /*$items .= '<li><a href="wordpress1/profile/login">Login</a></li>';
+        $items .= '<li><a href="wordpress1/profile/register">Sign Up!</a></li>';*/
+        
+        $items .= '</ul><ul class="nav navbar-nav navbar-right nav-pills">';
+            $items .= '<li><p class="navbar-btn"><a class="btn btn-success" href="wordpress1/profile/login">Sign in</a></p></li>';
+            $items .= '<li><p class="navbar-btn"><a class="btn btn-primary" href="wordpress1/profile/register">Register</a></p></li>';
+		$items .= '</ul>';
+    }
+    return $items;
+}
+
+add_filter( 'wp_nav_menu_items', 'my_custom_menu_item', 10, 2);

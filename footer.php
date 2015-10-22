@@ -11,15 +11,19 @@
 
 ?>
 
-	</div><!-- #content -->
+        </div><!-- #content -->
 
-	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'pickurprojects' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'pickurprojects' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'pickurprojects' ), 'pickurprojects', '<a href="http://underscores.me/" rel="designer">Chanchal R. Kariwala</a>' ); ?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
+        <footer id="colophon" class="site-footer" role="contentinfo">
+            <div style="border-top:2px solid black"></div>
+            <div class="site-info">
+                <a href="<?php echo esc_url( __( 'https://wordpress.org/', 'pickurprojects' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'pickurprojects' ), 'WordPress' ); ?></a>
+                <span class="sep"> | </span>
+                <?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'pickurprojects' ), 'pickurprojects', '<a href="http://underscores.me/" rel="designer">Chanchal R. Kariwala</a>' ); ?>
+            </div><!-- .site-info -->
+        </footer><!-- #colophon -->
+    </div><!-- row -->
+    </div><!-- container -->
+
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
