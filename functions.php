@@ -198,7 +198,7 @@ function my_custom_menu_item($items, $args)
         $items .= '</ul><ul class="nav navbar-nav navbar-right nav-pills">';
             $items .= '<li><p class="navbar-btn"><a class="btn btn-success" href="wordpress1/profile/login">Sign in</a></p></li>';
             $items .= '<li><p class="navbar-btn"><a class="btn btn-primary" href="wordpress1/profile/register">Register</a></p></li>';
-		$items .= '</ul>';
+		/*$items .= '</ul>';*/
     }
     return $items;
 }
