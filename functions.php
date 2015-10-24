@@ -162,6 +162,8 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/jetpack.php';
 
+/**************************************************************************************/
+
 /**
  * navigation bootstrap
  */
@@ -204,3 +206,135 @@ function my_custom_menu_item($items, $args)
 }
 
 add_filter( 'wp_nav_menu_items', 'my_custom_menu_item', 10, 2);
+
+/**************************************************************************************/
+
+/**
+ * Function to add 'Image URL' Field on Add Category Page
+ */
+
+function pippin_taxonomy_add_new_meta_field() {
+	?>
+	<div class="form-field">
+		<label for="term_meta[img]"><?php _e( 'Category Image URL', 'pippin' ); ?></label>
+		<input type="text" name="term_meta[img]" id="term_meta[img]" value="">
+		<p class="description"><?php _e( 'Enter a value for this field','pippin' ); ?></p>
+	</div>
+<?php
+}
+
+add_action( 'category_add_form_fields', 'pippin_taxonomy_add_new_meta_field', 10, 2 );
+
+/**
+ * Function to add 'Edit Image URL' Field on Edit Category Page
+ */
+
+function pippin_taxonomy_edit_meta_field($term) {
+	// put the term ID into a variable
+	$t_id = $term->term_id;
+
+	// retrieve the existing value(s) for this meta field. This returns an array
+	$term_meta = get_option( "taxonomy_$t_id" ); ?>
+
+	<tr class="form-field">
+        <th scope="row" valign="top"><label for="term_meta[img]"><?php _e( 'Category Image URL', 'pippin' ); ?></label></th>
+		<td>
+			<input type="text" name="term_meta[img]" id="term_meta[img]" value="<?php echo esc_attr( $term_meta['img'] ) ? esc_attr( $term_meta['img'] ) : ''; ?>">
+            <p class="description"><?php _e( 'Enter a value for this field','pippin' ); ?></p>
+		</td>
+	</tr>
+<?php
+}
+
+add_action( 'category_edit_form_fields', 'pippin_taxonomy_edit_meta_field', 10, 2 );
+
+/**
+ * Function to save Image URL Field on Add and Edit Category Page
+ */
+
+function save_taxonomy_custom_meta( $term_id ) {
+	if ( isset( $_POST['term_meta'] ) ) 
+    {
+		$t_id = $term_id;
+		$term_meta = get_option( "taxonomy_$t_id" );
+		$cat_keys = array_keys( $_POST['term_meta'] );
+
+		foreach ( $cat_keys as $key ) 
+        {
+			if ( isset ( $_POST['term_meta'][$key] ) ) 
+            {
+				$term_meta[$key] = $_POST['term_meta'][$key];
+			}
+		}
+
+		// Save the option array.
+		update_option( "taxonomy_$t_id", $term_meta );
+	}
+}  
+
+add_action( 'edited_category', 'save_taxonomy_custom_meta', 10, 2 );  
+
+add_action( 'create_category', 'save_taxonomy_custom_meta', 10, 2 );
+
+/*
+ * Display Category Image
+ */
+
+function get_category_image($cat_id)
+{
+    $category = get_category($cat_id);
+    $term_meta = get_option( "taxonomy_$cat_id" );
+
+    $cat_img_src = $term_meta['img'];
+    if(! isset($cat_img_src) || $cat_img_src == null)
+    {
+        $cat_img_src = get_stylesheet_directory_uri() . '/images/default-thumb-img.png'.'';
+    }
+
+    $src = '<img src="'.$cat_img_src.'" alt="'.$category->slug.'" height="200" width="200" class="img-rounded attachment-thumbnail wp-post-image"/><br/>';
+
+    return $src;
+
+}
+
+/**************************************************************************************/
+
+/**
+
+ * Function to return default thumbnail if Post does not have one
+
+ *
+
+ */
+
+function wpse55748_filter_post_thumbnail_html( $html ) 
+{
+
+    $id = get_post_thumbnail_id();
+
+    // If there is no post thumbnail,
+    // Return a default image
+    if ( '' == $html ) 
+    {
+        return '<img src="' . get_stylesheet_directory_uri() . '/images/default-thumb-img.png" alt="'.get_the_title($id).'" width="200" height="200" class="attachment-thumbnail wp-post-image img-rounded"/>';
+    }
+
+    // Else, return the post thumbnail
+    return $html;
+}
+
+add_filter( 'post_thumbnail_html', 'wpse55748_filter_post_thumbnail_html');
+
+function mam_posts_query($query) {
+
+    global $mam_posts_query;
+
+    if ($mam_posts_query && strpos($query, 'ORDER BY RAND()') !== false) 
+    {
+        $query = str_replace('ORDER BY RAND()',$mam_posts_query,$query);
+        //print_r("<p>$query</p>");
+    }
+    return $query;
+}
+
+add_filter('query','mam_posts_query');

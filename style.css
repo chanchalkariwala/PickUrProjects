@@ -38,7 +38,7 @@ body
 }
 
 .navbar-brand {
-	padding:5px 10px 0px 10px;
+	padding:5px 10px 5px 10px;
 }
 
 /* Change bg-color of menu-items on hover */
@@ -54,3 +54,79 @@ body
 
 /* Navbar modifications : END */
 
+
+@media screen and (min-width: 480px) {
+    .post-archive{
+        width: 40%;
+        margin:auto;
+    }
+}
+
+@media screen and (min-width: 768px) {
+.post-archive{
+        width: 45%;
+        padding-top:20px;
+        padding-left:20px;
+        padding-right:20px;
+        vertical-align:top;
+        display: inline-block;
+    } 
+}
+
+@media screen and (min-width: 992px) {
+.post-archive{
+        width: 30%;
+        padding-top:20px;
+        padding-left:20px;
+        padding-right:20px;
+        vertical-align:top;
+        display: inline-block;
+    }
+}
+
+div.panel:hover{
+    background-color:#f9f9f9;
+    border: 1px solid #c5C5C5;
+}
+
+div.post-archive a:hover {
+    text-decoration:none;
+}
+
+div#post-filters {
+    padding:25px 0px;
+}
+
+.div-checkbox {
+    display: inline-block;
+}
+
+.div-checkbox label{
+  color: #999;
+  margin-right: 5px;
+  cursor: pointer;
+  padding: 0px 16px;
+  border: 1px solid #e5e5e5;
+  line-height: 38px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: "Open Sans",sans-serif;
+  display: inline-block;
+  background: #fff;
+  margin-bottom: 5px;
+}
+
+.div-checkbox input[type="checkbox"] {
+    margin-left:5px;
+    vertical-align:text-top;
+}
+
+div#post-filters input[type="submit"].btn-primary{
+    margin-top:15px;
+    font-size:15px;
+    font-weight:700;
+    padding:5px 10px;
+}

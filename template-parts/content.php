@@ -9,35 +9,30 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+<div id="post-<?php the_ID(); ?>" class="post-archive">
+    <a href="<?php the_permalink(); ?>" rel="bookmark">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <figure class="entry-thumbnail">
+                    <?php echo get_the_post_thumbnail( get_the_ID(), 'thumbnail'); ?>
+                </figure>
+            </div>
+            <div class="panel-footer">
+                <h4>
+                    <?php the_title(); ?>
+                </h4>
+                
+                <span style="font-size:80%;color: rgb(157, 151, 151);">
 
-		<?php if ( 'post' === get_post_type() ) : ?>
-		<div class="entry-meta">
-			<?php pickurprojects_posted_on(); ?>
-		</div><!-- .entry-meta -->
-		<?php endif; ?>
-	</header><!-- .entry-header -->
-
-	<div class="entry-content">
-		<?php
-			the_content( sprintf(
-				/* translators: %s: Name of current post. */
-				wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'pickurprojects' ), array( 'span' => array( 'class' => array() ) ) ),
-				the_title( '<span class="screen-reader-text">"', '"</span>', false )
-			) );
-		?>
-
-		<?php
-			wp_link_pages( array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'pickurprojects' ),
-				'after'  => '</div>',
-			) );
-		?>
-	</div><!-- .entry-content -->
-
-	<footer class="entry-footer">
-		<?php pickurprojects_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
-</article><!-- #post-## -->
+                <?php if ( 'post' === get_post_type() ) : 
+                    $category = get_the_category(); 
+                    $cat_name = $category[0]->cat_name;
+                    /*if($cat_name!='Uncategorized')*/
+                        echo $cat_name;                
+                endif; ?>
+                
+                </span>
+            </div>
+        </div>
+    </a>
+</div>

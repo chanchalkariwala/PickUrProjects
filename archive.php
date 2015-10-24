@@ -16,11 +16,13 @@ get_header(); ?>
 
 			<header class="page-header">
 				<?php
-					the_archive_title( '<h1 class="page-title">', '</h1>' );
+					the_archive_title( '<h2 class="page-title">', '</h2>' );
 					the_archive_description( '<div class="taxonomy-description">', '</div>' );
 				?>
 			</header><!-- .page-header -->
-
+            
+            <div class="text-center" style="padding-bottom:50px">
+            
 			<?php /* Start the Loop */ ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 
@@ -35,7 +37,8 @@ get_header(); ?>
 				?>
 
 			<?php endwhile; ?>
-
+            </div>
+            
 			<?php the_posts_navigation(); ?>
 
 		<?php else : ?>
@@ -47,5 +50,4 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>
