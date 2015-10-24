@@ -39,7 +39,9 @@ global $post;
     
             <div id="primary" class="content-area">
                 <main id="main" class="site-main" role="main">
-                
+                    
+                    <h3 class="well">Projects</h3>
+                    
                     <div id="post-filters" class="text-center">
                         <form>   
                         <?php                    
