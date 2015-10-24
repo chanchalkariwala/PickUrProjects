@@ -11,7 +11,7 @@
 
 <section class="no-results not-found">
 	<header class="page-header">
-		<h1 class="page-title"><?php esc_html_e( 'Nothing Found', 'pickurprojects' ); ?></h1>
+		<h2 class="page-title"><?php esc_html_e( 'Nothing Found', 'pickurprojects' ); ?></h2>
 	</header><!-- .page-header -->
 
 	<div class="page-content">
@@ -22,13 +22,21 @@
 		<?php elseif ( is_search() ) : ?>
 
 			<p><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'pickurprojects' ); ?></p>
-			<?php get_search_form(); ?>
-
+			
 		<?php else : ?>
 
 			<p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'pickurprojects' ); ?></p>
-			<?php get_search_form(); ?>
-
+			
 		<?php endif; ?>
+        
+        <form class="navbar-form" role="search" method="get" id="searchform" action="<?php bloginfo('url'); ?>" style="padding-top:20px;">
+            <div class="input-group">
+                <input type="text" id="searchbox" class="form-control" placeholder="Search" name="s" id="s">
+                <div class="input-group-btn">
+                    <button class="btn btn-default"  id="searchsubmit"  type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+            </div>
+        </form>
+        
 	</div><!-- .page-content -->
 </section><!-- .no-results -->
