@@ -16,8 +16,14 @@ get_header(); ?>
                 <p><a class="btn btn-lg btn-default" href="" role="button">Get started today</a></p>
             </div>
             
-            <h3 class="well">Choose a category to begin with!</h3>
-            
+            <!--<h3 class="well">Choose a category to begin with!</h3>-->
+			
+			<div class="row">
+                <div class="col-lg-12">
+                    <h2 class="page-header">Choose a category to begin with!</h2>
+                </div>
+            </div>
+			
             <?php
             $args = array ( 'hide_empty'=> 0, 'orderby' => 'count', 'order' => 'desc', 'exclude' => '1' );  
             $categories = get_categories($args);  
@@ -39,22 +45,25 @@ get_header(); ?>
                     $cat_image = get_category_image($cat_id);?>
                     
                     
-                    <div id="cat-<?php echo $cat_id ?>" class="post-archive">
+                    <article id="cat-<?php echo $cat_id ?>" class="post-archive">
                         <a href="<?php echo site_url('/category/').$category->slug ?>" rel="bookmark">
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <figure class="entry-thumbnail">
                                         <?php echo $cat_image; ?>
                                     </figure>
-                                </div>
-                                <div class="panel-footer">
-                                    <h4>
+									<h4 style="padding-top:10px;">
                                         <?php echo $category->name; ?></a>
                                     </h4>
                                 </div>
+                                <!--<div class="panel-footer">
+                                    <h4>
+                                        <?php echo $category->name; ?></a>
+                                    </h4>
+                                </div>-->
                             </div>
                         </a>
-                    </div>
+                    </article>
                 <?php 
                 }
                 ?>

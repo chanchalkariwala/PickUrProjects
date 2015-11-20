@@ -22,10 +22,28 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 
 /*******************************My modifications*********************************/
 
-body
-{
+body {
    font-family: 'Open Sans' !important;
-   padding-top:55px;
+   padding-top:70px;
+   background-color:#F0F0F0;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+	body {
+	   padding-top:110px;
+	} 
+}
+
+#primary {
+	background-color:#FFFFFF;
+	padding:15px;
+	border-radius:5px;
+}
+
+#secondary {
+	background-color:#FFFFFF;
+	padding:15px;
+	border-radius:5px;
 }
 
 /* Navbar modifications : START */
@@ -129,4 +147,20 @@ div#post-filters input[type="submit"].btn-primary{
     font-size:15px;
     font-weight:700;
     padding:5px 10px;
+}
+
+.img-center{
+	margin:auto;
+}
+
+h2.page-header {
+	margin-top:5px;
+}
+
+h1.page-header {
+	margin-top:10px;
+}
+
+.form-horizontal .control-label{
+	margin-top: 10px;
 }
