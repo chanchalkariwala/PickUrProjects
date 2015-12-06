@@ -16,10 +16,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" />
-
 <?php wp_head(); ?>
-
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto" />
 </head>
 
 <body <?php body_class(); ?>>
@@ -28,7 +26,7 @@
 
         <header id="masthead" class="site-header" role="banner">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-                <div class="container">
+                <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
                         <button type="button"  class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">

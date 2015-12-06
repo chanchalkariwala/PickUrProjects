@@ -19,8 +19,8 @@ get_header(); ?>
             <!--<h3 class="well">Choose a category to begin with!</h3>-->
 			
 			<div class="row">
-                <div class="col-lg-12">
-                    <h2 class="page-header">Choose a category to begin with!</h2>
+                <div class="col-lg-12 text-center">
+                    <h1 class="page-header" >Choose a category to begin with!</h1>
                 </div>
             </div>
 			
@@ -52,18 +52,16 @@ get_header(); ?>
                                     <figure class="entry-thumbnail">
                                         <?php echo $cat_image; ?>
                                     </figure>
+								</div>
+								<div class="panel-footer">
 									<h4 style="padding-top:10px;">
-                                        <?php echo $category->name; ?></a>
+                                        <?php echo $category->name; ?>
                                     </h4>
                                 </div>
-                                <!--<div class="panel-footer">
-                                    <h4>
-                                        <?php echo $category->name; ?></a>
-                                    </h4>
-                                </div>-->
                             </div>
                         </a>
                     </article>
+					
                 <?php 
                 }
                 ?>

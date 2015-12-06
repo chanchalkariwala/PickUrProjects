@@ -48,21 +48,21 @@ global $post;
                     
                     <div id="post-filters" class="text-center">
                         <form>   
-                        <?php                    
-                        $categories = get_categories(array('hide_empty'=> 0, 'orderby'=>'count', 'order'=>'desc', 'number'=>'15'));  
-                        
-                        foreach ( $categories as $category ) { ?>
-                            <div class="div-checkbox">
-                                <label>
-                                <?php echo $category->cat_name; ?>
-                                <input type="checkbox" name="cat_name[]" value="<?php echo $category->slug; ?>" 
-                                <?php if(isset($_REQUEST['cat_name']) &&(in_array($category->slug, $_REQUEST['cat_name'] ))){echo 'checked="checked"';}?>
-                                />
-                                </label>
-                            </div>
-                        <?php } ?>
-                        <br/>
-                        <input class="btn btn-primary" type="submit" value="Filter" />
+							<?php                    
+							$categories = get_categories(array('hide_empty'=> 0, 'orderby'=>'count', 'order'=>'desc', 'number'=>'15'));  
+							
+							foreach ( $categories as $category ) { ?>
+								<div class="div-checkbox">
+									<label>
+									<?php echo $category->cat_name; ?>
+									<input type="checkbox" name="cat_name[]" value="<?php echo $category->slug; ?>" 
+									<?php if(isset($_REQUEST['cat_name']) &&(in_array($category->slug, $_REQUEST['cat_name'] ))){echo 'checked="checked"';}?>
+									/>
+									</label>
+								</div>
+							<?php } ?>
+							<br/>
+							<input class="btn btn-primary" type="submit" value="Filter" />
                         </form>
                     </div><!-- #post-filters -->
                     
@@ -91,32 +91,32 @@ global $post;
                     $mam_posts_query = ''; // Turn off filter
                     ?>
                     
-                <?php if ( have_posts() ) : ?>
-                    
-                    <div class="text-center" style="padding-bottom:50px">
-                    
-                    <?php /* Start the Loop */ ?>
-                    <?php while ( have_posts() ) : the_post(); ?>
-                        
-                        <?php
-                            /*
-                             * Include the Post-Format-specific template for the content.
-                             * If you want to override this in a child theme, then include a file
-                             * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-                             */
-                            get_template_part( 'template-parts/content', get_post_format() );
-                        ?>
-                        
-                    <?php endwhile; ?>
-                    </div>
-                    
-                    <?php the_posts_navigation(); ?>
+					<?php if ( have_posts() ) : ?>
+						
+						<div class="text-center" style="padding-bottom:50px">
+						
+						<?php /* Start the Loop */ ?>
+						<?php while ( have_posts() ) : the_post(); ?>
+							
+							<?php
+								/*
+								 * Include the Post-Format-specific template for the content.
+								 * If you want to override this in a child theme, then include a file
+								 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+								 */
+								get_template_part( 'template-parts/content', get_post_format() );
+							?>
+							
+						<?php endwhile; ?>
+						</div>
+						
+						<?php the_posts_navigation(); ?>
 
-                <?php else : ?>
+					<?php else : ?>
 
-                    <?php get_template_part( 'template-parts/content', 'none' ); ?>
+						<?php get_template_part( 'template-parts/content', 'none' ); ?>
 
-                <?php endif; ?>
+					<?php endif; ?>
 
                 </main><!-- #main -->
             </div><!-- #primary -->
